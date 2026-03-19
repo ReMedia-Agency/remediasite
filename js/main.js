@@ -211,22 +211,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.querySelector('#contact-form');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const formData = new FormData(contactForm);
-      const data = Object.fromEntries(formData);
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
+      
+      // Show loading state
+      submitBtn.innerHTML = 'Sending...';
+      submitBtn.disabled = true;
 
-      const formCard = contactForm.closest('.form-card');
-      formCard.innerHTML = `
-        <div class="form-success">
-          <div class="form-success-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          </div>
-          <h3>Thank You!</h3>
-          <p>Your inquiry has been received. A member of our team will reach out to you within 24 hours to schedule your free strategy call.</p>
-        </div>
-      `;
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.status === 200) {
+          const formCard = contactForm.closest('.form-card');
+          formCard.innerHTML = `
+            <div class="form-success">
+              <div class="form-success-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <h3>Thank You!</h3>
+              <p>Your inquiry has been received. A member of our team will reach out to you within 24 hours to schedule your free strategy call.</p>
+            </div>
+          `;
+        } else {
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+          alert(result.message || 'Something went wrong. Please try again.');
+        }
+      } catch (error) {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+        alert('Something went wrong. Please try again or email us directly.');
+      }
     });
   }
 });

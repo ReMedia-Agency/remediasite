@@ -118,27 +118,33 @@
             <h3>Request a Free Strategy Call</h3>
             <p>Tell us about your organization and goals. We'll follow up within 24 hours.</p>
             <form id="contact-form">
+              <!-- Web3Forms Config -->
+              <input type="hidden" name="access_key" value="40b6ac47-f5e9-4f9b-98dd-eca0ec109979">
+              <input type="hidden" name="subject" value="New Client Inquiry from ReMedia Website">
+              <input type="hidden" name="from_name" value="ReMedia Notifications">
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="first-name">First Name</label>
-                  <input type="text" id="first-name" class="form-control" required placeholder="John">
+                  <input type="text" id="first-name" name="First Name" class="form-control" required placeholder="John">
                 </div>
                 <div class="form-group">
                   <label for="last-name">Last Name</label>
-                  <input type="text" id="last-name" class="form-control" required placeholder="Doe">
+                  <input type="text" id="last-name" name="Last Name" class="form-control" required placeholder="Doe">
                 </div>
               </div>
               <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" class="form-control" required placeholder="john@yourorganization.com">
+                <input type="email" id="email" name="Email" class="form-control" required placeholder="john@yourorganization.com">
               </div>
               <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" class="form-control" placeholder="(555) 555-5555">
+                <input type="tel" id="phone" name="Phone" class="form-control" placeholder="(555) 555-5555">
               </div>
               <div class="form-group">
                 <label for="org-type">Organization Type</label>
-                <select id="org-type" class="form-control" required>
+                <select id="org-type" name="Organization Type" class="form-control" required>
                   <option value="" disabled selected>Select your organization type</option>
                   <option value="medical">Medical Practice / Healthcare</option>
                   <option value="legal">Law Firm / Legal Services</option>
@@ -153,7 +159,7 @@
               </div>
               <div class="form-group">
                 <label for="services-interest">Services of Interest</label>
-                <select id="services-interest" class="form-control">
+                <select id="services-interest" name="Services of Interest" class="form-control">
                   <option value="" disabled selected>Select a service</option>
                   <option value="branding">Branding & Identity</option>
                   <option value="website">Website Design & Development</option>
@@ -167,7 +173,7 @@
               </div>
               <div class="form-group">
                 <label for="message">How can we help?</label>
-                <textarea id="message" class="form-control" required placeholder="Tell us about your goals, challenges, or what you're looking for…"></textarea>
+                <textarea id="message" name="Message" class="form-control" required placeholder="Tell us about your goals, challenges, or what you're looking for…"></textarea>
               </div>
               <button type="submit" class="btn btn-primary btn-full">
                 Send Your Inquiry
