@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="Logo-Remedia Agency(FA)-03.png">
+  <title>Client Login | ReMedia Agency</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-hero);
+      padding: 6rem 1rem 2rem;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-logo {
+      height: 48px;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    [data-theme="dark"] .login-logo {
+      filter: brightness(1.8) contrast(1.1);
+    }
+
+    .login-header h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-header p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: all var(--transition-fast);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px var(--brand-glow);
+    }
+
+    .login-btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+    }
+
+    .login-footer a {
+      color: var(--brand-primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .login-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Message styling */
+    .auth-message {
+      display: none;
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #df3232;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    
+    [data-theme="dark"] .auth-message {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+    }
+    
+    .auth-message a {
+      color: inherit;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.8s ease-in-out infinite;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loading .spinner {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header id="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo" aria-label="ReMedia Agency Home">
+        <img src="Logo-Remedia Agency(FA)-03.png" alt="ReMedia Agency">
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="industries.html">Industries</a>
+        <a href="results.html">Results</a>
+        <a href="why-remedia.html">Why Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="clientportal.html">Client Portal</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <a href="contact.html" class="btn btn-primary nav-cta-btn">Book a Strategy Call</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+      <nav class="mobile-nav">
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="industries.html">Industries</a>
+        <a href="results.html">Results</a>
+        <a href="why-remedia.html">Why Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="clientportal.html">Client Portal</a>
+        <a href="contact.html" class="btn btn-primary" style="margin-top: 1rem; text-align: center;">Book a Strategy Call</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="login-wrapper">
+    <div class="login-container">
+      <div class="login-header reveal-on-load">
+        <a href="index.html">
+          <img src="Logo-Remedia Agency(FA)-03.png" alt="ReMedia Agency" class="login-logo">
+        </a>
+        <h1>Welcome Back</h1>
+        <p>Sign in to your client dashboard</p>
+      </div>
+
+      <div id="auth-message" class="auth-message reveal-on-load delay-1"></div>
+
+      <form id="login-form" autocomplete="off" class="reveal-on-load delay-1">
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control" required placeholder="name@company.com">
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" name="password" class="form-control" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary login-btn" id="submit-btn" style="position: relative;">
+          <span class="spinner"></span>
+          <span class="btn-text">Sign In</span>
+        </button>
+      </form>
+
+      <div class="login-footer reveal-on-load delay-2">
+        <p>Experiencing issues logging in? <br> <a href="contact.html">Contact Support</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('login-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const messageEl = document.getElementById('auth-message');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Hide previous message if active
+        messageEl.style.display = 'none';
+        
+        // Setup loading state
+        submitBtn.classList.add('loading');
+        const btnText = submitBtn.querySelector('.btn-text');
+        btnText.textContent = 'Authenticating...';
+        submitBtn.disabled = true;
+
+        // Simulate network latency for credibility
+        await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 800));
+
+        // Restore button state
+        submitBtn.classList.remove('loading');
+        btnText.textContent = 'Sign In';
+        submitBtn.disabled = false;
+
+        // Display error message
+        messageEl.innerHTML = `
+          <strong>Account Inactive</strong><br>
+          We couldn't locate an active client portal for this email. 
+          Please contact your account manager at <a href="tel:3167377933">(316) 737-7933</a> 
+          or <a href="mailto:info@remedia.agency">info@remedia.agency</a> to discuss opportunities or activate your dashboard.
+        `;
+        messageEl.style.display = 'block';
+        
+        // Clear password
+        document.getElementById('password').value = '';
+      });
+    });
+  </script>
+</body>
+</html>
