@@ -17,9 +17,14 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Push main to friend's repo
+      - name: Push to friend's repo without workflows
         env:
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git checkout -b mirror-branch
+          git rm -r --cached .github/
+          git commit -m "Mirror sync (excluding workflows)"
           git remote add mirror https://x-access-token:${MIRROR_TOKEN}@github.com/ReMedia-Agency/remediasite.git
-          git push mirror main:main --force
+          git push mirror mirror-branch:main --force
