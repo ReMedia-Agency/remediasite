@@ -21,4 +21,4 @@ jobs:
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
           git remote add mirror https://x-access-token:${MIRROR_TOKEN}@github.com/ReMedia-Agency/remediasite.git
-          git push mirror main:main
+          git push mirror main:main --force
